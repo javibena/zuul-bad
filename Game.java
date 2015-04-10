@@ -46,13 +46,13 @@ public class Game
         kfc = new Room ("Kentucky Fried Chicken ");
         
         // initialise room exits
-        entrada.setExits(null, burgerKing, tacoBell, mcdonalds);
-        mcdonalds.setExits(null, entrada, subway, null);
-        burgerKing.setExits(dominosPizza, null, kfc, entrada);
-        dominosPizza.setExits(null, null, burgerKing, null);
-        tacoBell.setExits(entrada, kfc, null, null);
-        subway.setExits(mcdonalds, null, null, null);
-        kfc.setExits(burgerKing, null, null, tacoBell);
+        entrada.setExits(null, burgerKing, tacoBell, mcdonalds, kfc);
+        mcdonalds.setExits(null, entrada, subway, null, tacoBell);
+        burgerKing.setExits(dominosPizza, null, kfc, entrada, null);
+        dominosPizza.setExits(null, null, burgerKing, null, null);
+        tacoBell.setExits(entrada, kfc, null, null, null);
+        subway.setExits(mcdonalds, null, null, null, null);
+        kfc.setExits(burgerKing, null, null, tacoBell, null);
 
         currentRoom = entrada;  // start game outside
     }
@@ -160,6 +160,9 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
+        if(direction.equals("southEast")){
+            nextRoom = currentRoom.southEastExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -202,6 +205,9 @@ public class Game
         if(currentRoom.westExit != null) {
                 System.out.print("west ");
             }
+        if(currentRoom.southEastExit != null){
+            System.out.print("south-east");
+        }
         System.out.println();
     }
 }
