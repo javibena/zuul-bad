@@ -46,13 +46,13 @@ public class Game
         kfc = new Room ("Kentucky Fried Chicken ");
         
         // initialise room exits
-        entrada.setExits(null, burgerKing, tacoBell, mcdonalds, kfc);
-        mcdonalds.setExits(null, entrada, subway, null, tacoBell);
-        burgerKing.setExits(dominosPizza, null, kfc, entrada, null);
-        dominosPizza.setExits(null, null, burgerKing, null, null);
-        tacoBell.setExits(entrada, kfc, null, null, null);
-        subway.setExits(mcdonalds, null, null, null, null);
-        kfc.setExits(burgerKing, null, null, tacoBell, null);
+        entrada.setExits(null, burgerKing, tacoBell, mcdonalds, kfc, null);
+        mcdonalds.setExits(null, entrada, subway, null, tacoBell, null);
+        burgerKing.setExits(dominosPizza, null, kfc, entrada, null, null);
+        dominosPizza.setExits(null, null, burgerKing, null, null, null);
+        tacoBell.setExits(entrada, kfc, null, null, null, mcdonalds);
+        subway.setExits(mcdonalds, null, null, null, null, null);
+        kfc.setExits(burgerKing, null, null, tacoBell, null, entrada);
 
         currentRoom = entrada;  // start game outside
     }
@@ -192,6 +192,9 @@ public class Game
             }
         if(currentRoom.southEastExit != null){
             System.out.print("south-east");
+        }
+        if(currentRoom.northWestExit != null){
+            System.out.print("north-west");
         }
         System.out.println();
     }
