@@ -62,4 +62,34 @@ public class Room
         return description;
     }
 
+    public Room getExit(String direction)
+    {
+        Room way = null;
+
+        switch (direction)
+        {
+            case "north":
+            way = northExit;
+            break;
+
+            case "east":
+            way = eastExit;
+            break;
+
+            case "south":
+            way = southExit;
+            break;
+
+            case "west":
+            way = westExit;
+            break;
+
+            case "southEast":
+            way = southEastExit;
+            break;
+        }
+        return way;    
+    }
 }
+
+
